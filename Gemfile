@@ -1,6 +1,7 @@
 source 'https://rubygems.org/'
 
 gem 'rails', '~> 5.0.0'
+gem 'devise'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -12,6 +13,11 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+group :test do
+  gem 'coveralls', require: false
+  gem 'database_cleaner'
+end
+
 group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
@@ -20,6 +26,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda'
   gem 'valid_attribute'
+  require 'rbconfig'
+  if RbConfig::CONFIG['target_os'] =~ /darwin(1[0-3])/i
+    gem 'rb-fsevent', '<= 0.9.4'
+  end
 end
 
 group :production do
