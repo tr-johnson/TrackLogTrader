@@ -27,7 +27,10 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda'
   gem 'valid_attribute'
-
+  require 'rbconfig'
+  if RbConfig::CONFIG['target_os'] =~ /darwin(1[0-3])/i
+    gem 'rb-fsevent', '<= 0.9.4'
+  end
 end
 
 group :production do
